@@ -109,8 +109,6 @@ public class MainBootstrap implements CommandLineRunner {
                 .snacks(snacks).build();
         foodScheduleRepository.save(food1);
 
-        System.out.println();
-
-
+        //TODO Find a solution for Set<Snacks>
     }
 }
