@@ -7,9 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,7 +52,7 @@ public class FoodScheduleServiceImpl implements FoodScheduleService {
     @Override
     public String deleteFoodSById(Long id) {
         foodScheduleRepository.deleteById(id);
-        return "Food Schedule by ID: " + id + "was deleted";
+        return "Food Schedule by ID: " + id + " was deleted";
     }
 
     @Override

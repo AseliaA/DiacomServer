@@ -3,10 +3,8 @@ package com.diacom.diacom.entity;
 import com.diacom.diacom.enums.Gender;
 import com.diacom.diacom.enums.SugarType;
 import lombok.*;
-import org.springframework.context.annotation.Role;
 
 import javax.persistence.*;
-
 
 
 @Getter

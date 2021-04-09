@@ -2,13 +2,9 @@ package com.diacom.diacom.entity;
 
 import com.diacom.diacom.enums.DayOfTheWeek;
 import com.diacom.diacom.enums.HowManyTimes;
-import com.sun.xml.bind.v2.TODO;
 import lombok.*;
 
 import javax.persistence.*;
- import java.time.LocalTime;
-import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -23,11 +19,11 @@ public class ScheduleOfMedicine {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-//    @ManyToOne(cascade=CascadeType.MERGE, targetEntity = User.class)
+    //    @ManyToOne(cascade=CascadeType.MERGE, targetEntity = User.class)
     @JoinColumn(name = "user_id")
     Long userId;
 
-    @Column(name = "nameOfMedicine", nullable = false, unique = true )
+    @Column(name = "nameOfMedicine", nullable = false, unique = true)
     String name;
 
     @Column(name = "doctor")
@@ -39,7 +35,7 @@ public class ScheduleOfMedicine {
     @Column(name = "howManyTimes", nullable = false)
     HowManyTimes howManyTimes;
     //TODO Set a notification for medicine schedule. Ask Ksenia or Sergei about it
-    
+
     @Column(name = "notes")
     String notes;
 

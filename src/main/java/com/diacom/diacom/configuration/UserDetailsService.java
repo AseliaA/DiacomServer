@@ -10,13 +10,15 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
+public class UserDetailsService
+        implements org.springframework.security.core.userdetails.UserDetailsService {
 
     @Autowired
     UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String userLogin) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userLogin)
+            throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByLogin(userLogin);
 
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + userLogin));

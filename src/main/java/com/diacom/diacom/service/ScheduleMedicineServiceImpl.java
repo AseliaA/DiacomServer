@@ -8,27 +8,26 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-public class ScheduleMedicineServiceImpl implements ScheduleMedicineService{
+public class ScheduleMedicineServiceImpl implements ScheduleMedicineService {
 
     ScheduleMedicineRepository scheduleMedicineRepository;
     UserRepository userRepository;
 
     @Override
-    public List<ScheduleOfMedicine> getAll(){
+    public List<ScheduleOfMedicine> getAll() {
         return scheduleMedicineRepository.findAll();
     }
 
     @Override
     public List<ScheduleOfMedicine> getAllByUserId(Long userId) {
-       return scheduleMedicineRepository.findAll().stream().filter
-                (x->x.getUserId().equals(userId))
+        return scheduleMedicineRepository.findAll().stream().filter
+                (x -> x.getUserId().equals(userId))
                 .collect(Collectors.toList());
     }
 
@@ -49,11 +48,18 @@ public class ScheduleMedicineServiceImpl implements ScheduleMedicineService{
     }
 
     @Override
-    public String deleteSMedicineByUserId(Long userId){
+    public String deleteSMedicineByUserId(Long userId) {
 
         scheduleMedicineRepository.deleteAll(scheduleMedicineRepository.findAll().stream().filter
-                (x->x.getUserId().equals(userId))
+                (x -> x.getUserId().equals(userId))
                 .collect(Collectors.toList()));
         return "Everything must worked";
     }
+
+    @Override
+    public String deleteAllMedicine() {
+        scheduleMedicineRepository.deleteAll();
+        return "You have deleted all";
+    }
+
 }
