@@ -8,18 +8,12 @@ import com.diacom.diacom.enums.SugarType;
 import com.diacom.diacom.repository.FoodScheduleRepository;
 import com.diacom.diacom.repository.ScheduleMedicineRepository;
 import com.diacom.diacom.repository.UserRepository;
-import com.diacom.diacom.repository.UserRoleRepository;
+//import com.diacom.diacom.repository.UserRoleRepository;
 import com.diacom.diacom.service.FoodScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 
 @Component
 public class MainBootstrap implements CommandLineRunner {
@@ -28,8 +22,8 @@ public class MainBootstrap implements CommandLineRunner {
     UserRepository userRepository;
     @Autowired
     ScheduleMedicineRepository scheduleMedicineRepository;
-    @Autowired
-    UserRoleRepository userRoleRepository;
+    //    @Autowired
+//    UserRoleRepository userRoleRepository;
     @Autowired
     FoodScheduleRepository foodScheduleRepository;
 
@@ -48,34 +42,26 @@ public class MainBootstrap implements CommandLineRunner {
                 .height(1.75f)
                 .weight(75)
                 .nameOfDoctorOfCase("Alex Smith")
+                .userRole("ROLE_USER")
                 .build();
 
         User user2 = User.builder()
                 .name("Alex")
                 .age(20)
-                .login("login1")
-                .password("pass2")
+                .login("login2")
+                .password(passwordEncoder.encode("pass2"))
                 .phoneNumberOrEmail(12345678923L)
                 .gender(Gender.Male)
                 .sugarType(SugarType.secondSugarType)
                 .height(1.75f)
                 .weight(75)
                 .nameOfDoctorOfCase("Alex Smith")
+                .userRole("ROLE_ADMIN")
                 .build();
 
         userRepository.save(user);
-        UserRole userRole = UserRole.builder()
-                .roleName("USER")
-                .user(user)
-                .build();
-        userRoleRepository.save(userRole);
-
-        userRepository.save(user);
-        UserRole userRole2 = UserRole.builder()
-                .roleName("USER")
-                .user(user2)
-                .build();
         userRepository.save(user2);
+
 
         ScheduleOfMedicine schedule = ScheduleOfMedicine.builder()
                 .name("Ibuphen")
@@ -96,8 +82,11 @@ public class MainBootstrap implements CommandLineRunner {
                 .build();
         scheduleMedicineRepository.save(schedule1);
 
-        ArrayList<Snack> snacks = new ArrayList<>();
-        snacks.add(Snack.builder().name("ice-cream").build());
+
+//        ArrayList<Snack> snacks = new ArrayList<>();
+//        snacks.add(Snack.builder().name("ice-cream").build());
+
+
         FoodSchedule food1 = FoodSchedule.builder()
                 .userId(user.getId())
                 .breakfast(Breakfast.builder()
@@ -105,8 +94,8 @@ public class MainBootstrap implements CommandLineRunner {
                 .lunch(Lunch.builder()
                         .name("omlet2").build())
                 .dinner(Dinner.builder()
-                .name("omlet3").build())
-                .snacks(snacks).build();
+                        .name("omlet3").build())
+                .snack(Snack.builder().name("snack").build()).build();
         foodScheduleRepository.save(food1);
 
         //TODO Find a solution for Set<Snacks>

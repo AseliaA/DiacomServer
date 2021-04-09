@@ -36,9 +36,13 @@ public class FoodSchedule {
     @JoinColumn(name = "dinner", nullable = false)
     Dinner dinner;
 
-    @ManyToOne(cascade=CascadeType.ALL , targetEntity = Snack.class)
-    @JoinColumn(name = "snacks")
-    List<Snack> snacks;
+//    @ManyToOne(cascade=CascadeType.ALL , targetEntity = Snack.class)
+//    @JoinColumn(name = "snacks")
+//    List<Snack> snacks;
+
+    @OneToOne(cascade=CascadeType.ALL , targetEntity = Snack.class)
+    @JoinColumn(name = "snack")
+    Snack snack;
 
     @Column(name = "notes")
     String notes;

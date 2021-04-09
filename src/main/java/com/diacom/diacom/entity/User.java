@@ -3,6 +3,7 @@ package com.diacom.diacom.entity;
 import com.diacom.diacom.enums.Gender;
 import com.diacom.diacom.enums.SugarType;
 import lombok.*;
+import org.springframework.context.annotation.Role;
 
 import javax.persistence.*;
 
@@ -27,7 +28,7 @@ public class User {
     @Column(name = "login", nullable = false, unique = true)
     String login;
 
-    @Column(name = "passwordd", nullable = false)
+    @Column(name = "passwordd", nullable = false, length = 300)
     String password;
 
     @Column(name = "phoneNumberOrEmail", unique = true)
@@ -51,4 +52,6 @@ public class User {
     @Column(name = "NameOfDoctorOfCase")
     String nameOfDoctorOfCase;
 
+    @Column(name = "userRole")
+    String userRole;
 }
