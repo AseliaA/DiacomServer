@@ -5,6 +5,8 @@ import com.diacom.diacom.enums.SugarType;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Getter
@@ -47,9 +49,28 @@ public class User {
     @Column(name = "weight", nullable = false)
     int weight;
 
-    @Column(name = "NameOfDoctorOfCase")
-    String nameOfDoctorOfCase;
+    @Column(name = "NameOfDoctor")
+    String nameOfDoctor;
 
-    @Column(name = "userRole")
-    String userRole;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public User(String name, String login, String password,
+                Long phoneNumberOrEmail, Integer age, Gender gender,
+                SugarType sugarType, Float height, int weight,
+                String nameOfDoctor) {
+        this.name = name;
+        this.login = login;
+        this.password = password;
+        this.phoneNumberOrEmail = phoneNumberOrEmail;
+        this.age = age;
+        this.gender = gender;
+        this.sugarType = sugarType;
+        this.height = height;
+        this.weight = weight;
+        this.nameOfDoctor = nameOfDoctor;
+    }
 }
